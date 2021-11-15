@@ -1,9 +1,10 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import './style.css';
 
 class Square extends React.Component {
     render() {
-        return ( <button> { /* TODO */ } </button>
+        return ( <button className="square"> { /* TODO */ } </button>
 
         );
     }
