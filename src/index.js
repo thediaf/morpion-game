@@ -5,6 +5,7 @@ import './style.css';
 function Square(props) {
     return ( <button className="square" 
                 onClick={props.onClick}
+                key={props.iddh}
             > 
                 { props.value}        
             </button>
@@ -38,31 +39,36 @@ class Board extends React.Component {
             <Square 
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
+                iddh={i}
             /> 
         );
     }
+    
+    board_row = () => {
+        let row = [];
+        let t = 0;
+        for (let i = 0; i < 3; i++) {
+            let children = [];
+            
+            for (let j = 0; j < 3; j++) {
+                children.push(this.renderSquare(t));
+                console.log(t);
+                t++;   
+            }
+            row.push(<div className="board-row" key={i}>{children}</div>)
+        
+        }
+        return row;
+    }
 
     render() {
-        return (
+        return(
             <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+                {this.board_row()}
             </div>
-        );
+        )
     }
+    
 }
 
 class Game extends React.Component{
